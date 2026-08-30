@@ -1,3 +1,5 @@
+![Mendix Architect](brand/banner-1280x640.png)
+
 # Mendix Architect
 
 **Understand a Mendix application without opening hundreds of documents.**
@@ -158,6 +160,22 @@ folder, and is never sent back to the pane once saved.
 | Studio Pro | 10.24.10 or later, including 11.x |
 | .NET | 8.0 runtime, shipped with Studio Pro |
 | Platform | Windows and macOS |
+
+---
+
+## Documentation
+
+Full guides live in [docs/](docs/README.md).
+
+| Guide | Covers |
+|---|---|
+| [Getting started](docs/getting-started.md) | Install, first scan, reading the overview |
+| [Explore](docs/explore.md) | Explorer, Graph, Network, Domain, Paths, Impact, Cycles, Inventory |
+| [Review](docs/review.md) | Recommendations, Security, Rules, Unused, Reach |
+| [Reports and CI](docs/reports-and-ci.md) | Explain this app, dossier, SARIF, Compare |
+| [Ask](docs/ask.md) | Questions in plain language, local or cloud |
+| [What it cannot see](docs/limits.md) | The honest limits, and why each exists |
+| [Troubleshooting](docs/troubleshooting.md) | When something looks wrong |
 
 ---
 
