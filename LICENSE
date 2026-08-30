@@ -1,0 +1,60 @@
+Mendix Architect — End User Licence Agreement
+
+Copyright © 2026 Mohamed El Nady. All rights reserved.
+
+This software is licensed, not sold.
+
+1. GRANT
+
+   Subject to this agreement, you are granted a non-exclusive, non-transferable licence to
+   install and use Mendix Architect within Mendix Studio Pro, for the purpose of analysing
+   applications you develop or maintain.
+
+2. RESTRICTIONS
+
+   You may not:
+
+   a. redistribute, sublicense, sell, rent, lease or lend the software;
+   b. decompile, disassemble or otherwise attempt to derive the source code, except to the
+      extent that applicable law expressly permits despite this limitation;
+   c. modify the software or create derivative works from it;
+   d. remove or alter any copyright, trademark or other proprietary notice.
+
+3. OWNERSHIP
+
+   The software is proprietary. All right, title and interest in it, including all
+   intellectual property rights, remain with the copyright holder. No rights are granted
+   other than those expressly stated above.
+
+4. YOUR DATA
+
+   The software reads the Mendix application you have open and stores its results locally on
+   your machine. It transmits nothing. The optional model-assisted question feature sends a
+   digest of measured facts to an endpoint you configure, and only after you configure it;
+   you are responsible for the terms of any third-party service you point it at.
+
+5. NO WARRANTY
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+   PURPOSE AND NONINFRINGEMENT.
+
+   The software reports findings about application architecture. Those findings are measured
+   from the model and are explicitly not guarantees about the behaviour of a running
+   application. Decisions taken on the basis of its output remain yours.
+
+6. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+   IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+7. TERMINATION
+
+   This licence terminates automatically if you breach any of its terms. On termination you
+   must stop using the software and remove it from your systems.
+
+8. THIRD-PARTY COMPONENTS
+
+   The software is built with React (MIT) and runs against the Mendix Studio Pro
+   Extensibility API, which is provided by Mendix under its own terms.
