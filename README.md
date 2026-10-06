@@ -37,10 +37,46 @@ and its server for AI agents.
 
 ---
 
+## What's new in 1.1.0
+
+[![Mendix Architect 1.1 — what's new (video, 2:47)](video/mendix-architect-1.1-cover.png)](video/mendix-architect-1.1-whats-new.mp4)
+
+▶ **[Watch the 1.1 video](video/mendix-architect-1.1-whats-new.mp4)** (2 min 47 s, with voice-over).
+
+Eight new views, a new **Evolve** group, and two ways to use the analysis outside Studio Pro.
+Full notes: [CHANGELOG.md](CHANGELOG.md).
+
+| Area | New in 1.1.0 |
+|---|---|
+| **Explore** | **Workflows** — each workflow as a process diagram, and what can stall it · **C4 model** — context, containers and modules, exported as Structurizr DSL, C4-PlantUML or Mermaid |
+| **Review** | **Tests** — what the unit tests reach, and the risky microflows none reach · **Duplicates** — copied-and-renamed microflows and pages · **Sensitive data** — personal and secret attributes, and who can reach them · **Policies** — must and must-not rules on individual elements |
+| **Evolve** *(new group)* | **Upgrade** — what stands between the app and Mendix 12's React client, with rough hours, and Java library conflicts · **Hotspots** — what changes most and together, from Git history · **Debt** — every finding priced, summed into days |
+| **Outside Studio Pro** | **Command line and pull-request gate** — fails only on new findings · **MCP server** — Maia, Claude Code, Cursor and VS Code can ask the analysis |
+| **Changed** | The app is scanned again once after upgrading. The first pipeline run on 1.1 reports the new rule groups as new: accept them with a baseline, or use `--fail-on new-warnings` |
+
+The 1.1 screenshots use **Contoso Logistics**, an invented demo app. Every name in them is made up.
+
+| | |
+|---|---|
+| ![Workflows](screenshots/11-workflows.png) | ![C4 model](screenshots/12-c4-model.png) |
+| **Workflows** — process diagram, who each task targets, what can stall | **C4 model** — containers drawn from the model, ready to export |
+| ![Sensitive data](screenshots/15-sensitive-data.png) | ![Policies](screenshots/16-policies.png) |
+| **Sensitive data** — where personal data travels, and who reaches it | **Policies** — rules on elements, with the violations and their evidence |
+| ![Upgrade](screenshots/17-upgrade-mendix-12.png) | ![Hotspots](screenshots/18-hotspots.png) |
+| **Upgrade** — Mendix 12 readiness, page by page | **Hotspots** — changes against size, from Git history |
+| ![Technical debt](screenshots/19-technical-debt.png) | ![Agents](screenshots/20-agents-mcp.png) |
+| **Debt** — every finding priced, by area and module | **Agents** — the MCP server and how to connect Maia |
+
+More: [Tests](screenshots/13-tests.png) ·
+[Duplicates](screenshots/14-duplicates.png) ·
+[Pull-request gate](screenshots/21-ci-gate.png)
+
+---
+
 ## Screenshots
 
-All screenshots are of **NorthwindOps**, a demo application built for this purpose. Every
-name in them is invented.
+These screenshots, from 1.0, are of **NorthwindOps**, a demo application built for this purpose.
+Every name in them is invented.
 
 | | |
 |---|---|

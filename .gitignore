@@ -1,3 +1,6 @@
 # Nothing here is built. This repository ships the package and its listing.
 .DS_Store
 Thumbs.db
+
+# Module packages are published as release assets, not committed (1.0 and 1.1 alike).
+*.mxmodule
