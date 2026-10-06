@@ -2,10 +2,18 @@
 
 ## Install
 
-1. Download `MendixArchitect.mxmodule` from the [releases page](../../../releases).
-2. In Studio Pro: **App → Import module package**, select the file, import.
-3. Restart Studio Pro.
-4. **Extensions → Mendix Architect → Open Architect**.
+Mendix Architect is installed from the Mendix Marketplace, like any other module.
+
+1. Open your app in Studio Pro (10.24.10 or later, including 11.x) and sign in.
+2. Open the Marketplace: **View → Marketplace**, or the Marketplace icon on the right of the top bar.
+3. Search for **Mendix Architect** and open it.
+4. Click **Download**.
+5. In the **Import Module** dialog, choose **Add as a new module** and click **Import**.
+6. Studio Pro asks whether to trust the module's extension: choose **Trust module and enable
+   extension**, then **OK**. No restart is needed.
+7. Open it from **Extensions → Mendix Architect → Open Architect**. The first scan starts on its own.
+
+To update, download the new version the same way and choose **Replace existing module**.
 
 The pane docks like any other. It is read-only and never writes to your model.
 
