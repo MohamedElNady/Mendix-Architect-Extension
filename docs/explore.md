@@ -113,3 +113,26 @@ a local refactor.
 
 **Marketplace** — vendor modules, versions, and how much of your own code references each,
 which is what it would cost to replace one.
+
+## Workflows
+
+*New in 1.1.* Each workflow drawn as a process: its user tasks, decisions and outcomes. Next to it,
+what can make it stall:
+
+- a user task that targets nobody;
+- a task page that no role is allowed to open;
+- a targeting XPath that names a role the app does not have;
+- a workflow that nothing starts.
+
+Workflows from Studio Pro 10.x and 11.x are both read.
+
+## C4 model
+
+*New in 1.1.* The app as a C4 model. User roles become people; outbound calls and published APIs
+become external systems; modules become components. It is drawn in the pane at context,
+container and component level, and exported as **Structurizr DSL**, **C4-PlantUML** or
+**Mermaid**, ready for an architecture repository.
+
+Systems whose address is computed at run time cannot be named from the model. They are grouped
+under the module that calls them.
+

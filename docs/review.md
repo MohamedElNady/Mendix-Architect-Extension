@@ -92,3 +92,29 @@ entity event handlers run on commit or delete from wherever that happens, with *
 them*. Reading the model gives no hint they exist. A Before handler that can veto is business
 logic hidden behind a save button, and anyone debugging a save that silently fails will not
 find it by reading the page.
+
+## Tests
+
+*New in 1.1.* What the unit tests (`TEST_` and `UT_` microflows) actually reach, followed through
+every call. The microflows worth testing first are the complex, widely used ones that no test
+reaches; they are listed with their size and how many documents depend on them.
+
+## Duplicates
+
+*New in 1.1.* Microflows and pages that are at least 90% alike in shape: copied, renamed and
+changed a little. Names and captions are ignored; the structure is compared. Each pair is a
+candidate for one shared microflow or snippet.
+
+## Sensitive data
+
+*New in 1.1, the third view under Security.* Personal and secret attributes, and whether anonymous
+users or external systems can reach them. Declare them in the rule file; until you do, attributes
+are suggested by name: credentials, identity numbers, financial, health, contact and personal
+details (for example *Password*, *NationalId*, *IBAN*, *Email*, *DateOfBirth*).
+
+## Policies
+
+*New in 1.1, a section under Rules.* Rules on individual elements rather than layers: select
+elements by type, module or name, then require or forbid a call, a reference or reach to others,
+with the reason. A violation comes with its evidence, like every other finding.
+

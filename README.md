@@ -9,20 +9,31 @@ model once and answers the questions that otherwise cost an afternoon of clickin
 depends on this, what breaks if I change it, what can I safely remove, and how did this app
 end up shaped like this.
 
-Verified on Studio Pro **10.24.10** and **11.12.2** from a single build, against a 52 MB app
-(2,887 documents / 14,318 references) and a 62-module app (9,258 documents / 58,388
+Verified live on Studio Pro **10.24.10**, **11.12.0** and **11.14.0** from a single build, against a
+52 MB app (2,887 documents / 14,318 references) and a 62-module app (9,258 documents / 58,388
 references).
+
+**Version 1.1.0.** What changed: [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
 ## Install
 
-1. Download `MendixArchitect.mxmodule` from this repository.
-2. In Studio Pro: **App → Import module package**, select the file.
-3. Restart Studio Pro.
-4. Open it from **Extensions → Mendix Architect → Open Architect**.
+Mendix Architect is installed from the Mendix Marketplace, like any other module.
 
-The extension is read-only. It never writes to your model.
+1. Open your app in Studio Pro (10.24.10 or later, including 11.x) and sign in.
+2. Open the Marketplace: **View → Marketplace**, or the Marketplace icon on the right of the top bar.
+3. Search for **Mendix Architect** and open it.
+4. Click **Download**.
+5. In the **Import Module** dialog, choose **Add as a new module** and click **Import**.
+6. Studio Pro asks whether to trust the module's extension: choose **Trust module and enable
+   extension**, then **OK**. No restart is needed.
+7. Open it from **Extensions → Mendix Architect → Open Architect**. The first scan starts on its own.
+
+To update, download the new version the same way and choose **Replace existing module**.
+
+The extension is read-only. It never writes to your model, and neither do its command-line tool
+and its server for AI agents.
 
 ---
 
@@ -67,6 +78,9 @@ More: [Explorer](screenshots/04-explorer.png) ·
 - **Treemap** — the whole app in one picture, sized by weight and coloured by severity
 - **Domain model** — entities, associations, and who reads or writes each
 - **Coupling and instability metrics** — Martin's I, with tiers derived from your app
+- **Workflows** *(1.1)* — each workflow as a process diagram, and what can stall it
+- **C4 model** *(1.1)* — context, containers and modules, exported as Structurizr DSL,
+  C4-PlantUML or Mermaid
 
 ### Judge it
 
@@ -77,6 +91,26 @@ More: [Explorer](screenshots/04-explorer.png) ·
 - **Layering rules** — a checked-in rule file, baseline generation, violations that carry
   their evidence
 - **Safe delete** — what breaks, and what is freed, if an element were removed
+- **Tests** *(1.1)* — which microflows the unit tests reach, and the risky ones none reach
+- **Duplicates** *(1.1)* — copied-and-renamed microflows and pages
+- **Sensitive data** *(1.1)* — personal and secret attributes, and whether anonymous users or
+  external systems can reach them
+- **Policies** *(1.1)* — *must* and *must not* rules on individual elements, checked live
+
+### Plan the next step *(new in 1.1)*
+
+- **Upgrade** — what stands between the app and Mendix 12 (the React client), page by page,
+  with rough hours, and Java library conflicts
+- **Hotspots** — what changes most and what changes together, from the app's Git history
+- **Debt** — every finding priced in minutes, summed into days, and ranked by how often its
+  document changes
+
+### Outside Studio Pro *(new in 1.1)*
+
+- **Command line and pull-request gate** — the same analysis without Studio Pro, reading the model
+  with Mendix's own `mx` tool; the gate fails only on findings that are new since the base branch
+- **MCP server for AI agents** — Maia, Claude Code, Cursor, VS Code and other agents can ask the
+  questions the pane answers; off until you start it, local only, token-protected
 
 ### Work with it
 
@@ -145,11 +179,16 @@ Your model never leaves your machine.
 The extension reads the open app and holds the result in memory and in a local cache under
 your user profile. Nothing is uploaded, and there is no telemetry.
 
-The optional **Ask** feature is the only thing that makes a network call, and only once you
-configure it. It sends a digest of measured facts — counts, module coupling, findings — and
+The optional **Ask** feature is the only thing that makes a network call to another machine, and
+only once you configure it. It sends a digest of measured facts — counts, module coupling, findings — and
 never document contents. Point it at Ollama and nothing leaves the machine at all. If you use
 a cloud endpoint, the API key is stored under your local application data, outside the app
 folder, and is never sent back to the pane once saved.
+
+The **MCP server** for AI agents is off until you start it. It listens on `127.0.0.1` only, refuses
+requests from web pages and needs a token. Version history is read locally, and authors are shown
+as opaque hashes, never names or e-mail addresses. Outbound calls are recorded by location only;
+headers and credentials are never read.
 
 ---
 
@@ -159,6 +198,7 @@ folder, and is never sent back to the pane once saved.
 |---|---|
 | Studio Pro | 10.24.10 or later, including 11.x |
 | .NET | 8.0 runtime, shipped with Studio Pro |
+| Node | only for the optional command line and MCP server; the one Studio Pro installs is used |
 | Platform | Windows and macOS |
 
 ---
@@ -173,6 +213,8 @@ Full guides live in [docs/](docs/README.md).
 | [Explore](docs/explore.md) | Explorer, Graph, Network, Domain, Paths, Impact, Cycles, Inventory |
 | [Review](docs/review.md) | Recommendations, Security, Rules, Unused, Reach |
 | [Reports and CI](docs/reports-and-ci.md) | Explain this app, dossier, SARIF, Compare |
+| [Evolve](docs/evolve.md) | Upgrade to Mendix 12, Hotspots, Debt *(1.1)* |
+| [Agents and the command line](docs/agents-and-cli.md) | MCP server for AI agents, CLI and pull-request gate *(1.1)* |
 | [Ask](docs/ask.md) | Questions in plain language, local or cloud |
 | [What it cannot see](docs/limits.md) | The honest limits, and why each exists |
 | [Troubleshooting](docs/troubleshooting.md) | When something looks wrong |
