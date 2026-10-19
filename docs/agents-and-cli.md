@@ -15,8 +15,9 @@ Mendix 12.
   Cursor, VS Code and most other agents support.
 - It is **off until you start it**, listens on `127.0.0.1` only (port 7791 by default), refuses
   requests from web pages, and requires a token. It stops when Studio Pro closes.
-- All 15 tools are **read-only**. They answer from the last scan; rescan in the pane to update what
-  agents see.
+- All 21 tools are **read-only** (15 since 1.1; 1.2 added performance, integrations, naming,
+  translations, the go-live checklist and the Mendix 11 target). They answer from the last scan;
+  rescan in the pane to update what agents see.
 
 The Agents tab shows a ready-made snippet for each client. The token is filled in only after you
 tick *Show token*.

@@ -15,6 +15,14 @@ What stands between the app and **Mendix 12**, where the React client becomes th
 
 Estimates are rough by design: use them to size the work, not to plan the sprint.
 
+### Mendix 11 target
+
+*New in 1.2.* For apps still on Mendix 10, choose **Mendix 11 (from 10)** in the Upgrade tab: what the move
+breaks or deprecates, from the official upgrade guide. Document templates, the Deep Link module,
+`mx.logger` in JavaScript actions, client-side comparisons with `''` (whose meaning changes in 11), a Java
+version below 21, and the removed *System context tasks* setting. Each item lists the documents it
+touches, with a rough effort. On an app already on 11, these are the deprecations still to clear.
+
 ## Hotspots
 
 What changes most, and what changes together, read from the app's **Git** history. Apps in the MPR v2

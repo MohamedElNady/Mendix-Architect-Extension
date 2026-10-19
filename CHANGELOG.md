@@ -1,5 +1,40 @@
 # Changelog
 
+## 1.2.0 — 2026-10-19
+
+**Ready for production.** Five new views, a new **Production** group and the whole interface in Dutch.
+Every check comes from Mendix's own guidance: the Best Practice Recommender, the naming, security and
+error-handling best practices, the language settings and the 10 → 11 upgrade guide. Verified live on
+Studio Pro 10.24.10 and 11.14.0 from one build.
+
+**Production** (new group) — *Go-live*: the production review as a checklist of passed, warning and
+blocker, answered from the model: security level, demo users, the administrator's default name,
+password rules, strict mode, published services without authentication and constants sent to the
+browser. Names and passwords are never read, and the checklist exports to Markdown. *Performance*:
+commits, retrieves, deletes and service calls inside loops, also when they hide in a sub-microflow
+the loop calls; pages that nest data containers three deep or fetch once per row; inheritance more
+than two levels deep and calculated attributes on pages. *Integrations*: what every outbound call
+does when the other side fails (default error handling, errors caught and then lost, no timeout,
+hard-coded hosts), grouped by external system. *Translations*: per language, the texts users will not
+read in their language and those they see as `[no translation]`. *Security* moves here from Review.
+
+**Review** — *Naming*: prefixes checked against what each microflow actually does, such as a
+scheduled-event prefix on a microflow no scheduled event runs; your own convention in the rule file.
+
+**Evolve → Upgrade** — a *Mendix 11 target*: what the move from 10 to 11 breaks or deprecates
+(document templates, the Deep Link module, `mx.logger`, comparisons with `''` whose meaning changes,
+the Java version, a removed setting).
+
+**Everywhere** — the whole interface is Dutch when you choose Dutch; element names and findings stay
+as they are. Tab rows that do not fit show icons instead of hiding tabs, and **Go to** (Ctrl+K) has a
+button in the title bar. The MCP server has 21 tools (six new: performance, integrations, naming,
+translations, go-live and the Mendix 11 target).
+
+**Changed** — the first time an app is opened after updating, it is scanned again. SARIF gains six
+rule groups (`performance`, `integration`, `naming`, `translation`, `golive`, `mendix11`), so the
+first pipeline run on 1.2 reports those as new: accept them with a baseline, or run the gate with
+`--fail-on new-warnings`. The rule file accepts a `naming` section.
+
 ## 1.1.0 — 2026-10-06
 
 **Eight new views, a new Evolve group, and two ways to use it outside Studio Pro.** Verified live on

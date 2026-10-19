@@ -118,3 +118,20 @@ details (for example *Password*, *NationalId*, *IBAN*, *Email*, *DateOfBirth*).
 elements by type, module or name, then require or forbid a call, a reference or reach to others,
 with the reason. A violation comes with its evidence, like every other finding.
 
+## Naming
+
+*New in 1.2.* Names checked against what each element actually does, from facts the scan already has
+(event handlers, calculated values, scheduled events, startup settings, published operations, workflows,
+page and nanoflow calls):
+
+- a prefix that does not match the microflow's role, such as an after-commit handler named like a
+  button action;
+- a prefix that claims a role the model does not give, such as a scheduled-event prefix on a microflow
+  no scheduled event runs;
+- document, entity, attribute and module names against the Mendix naming conventions.
+
+"Do the prefixes tell the truth?" shows it as one chart. Your own convention goes in the rule file,
+under `naming`.
+
+*Security and Sensitive data moved to the Production group in 1.2:* see [Production](production.md).
+

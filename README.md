@@ -9,11 +9,11 @@ model once and answers the questions that otherwise cost an afternoon of clickin
 depends on this, what breaks if I change it, what can I safely remove, and how did this app
 end up shaped like this.
 
-Verified live on Studio Pro **10.24.10**, **11.12.0** and **11.14.0** from a single build, against a
+Verified live on Studio Pro **10.24.10**, **11.12.0** and **11.14.0** from a single build (1.2: on 10.24.10 and 11.14.0), against a
 52 MB app (2,887 documents / 14,318 references) and a 62-module app (9,258 documents / 58,388
 references).
 
-**Version 1.1.0.** What changed: [CHANGELOG.md](CHANGELOG.md).
+**Version 1.2.0.** What changed: [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
@@ -34,6 +34,39 @@ To update, download the new version the same way and choose **Replace existing m
 
 The extension is read-only. It never writes to your model, and neither do its command-line tool
 and its server for AI agents.
+
+---
+
+## What's new in 1.2.0
+
+[![Mendix Architect 1.2 — what's new (video, 2:47)](video/mendix-architect-1.2-cover.png)](video/mendix-architect-1.2-whats-new.mp4)
+
+▶ **[Watch the 1.2 video](video/mendix-architect-1.2-whats-new.mp4)** (2 min 47 s, with voice-over): a short tour of
+what Mendix Architect already does, the 1.2 features, and what comes in 1.3.
+
+**Ready for production.** A new **Production** group, built from Mendix's own best practices, and the whole
+interface in Dutch. Full notes: [CHANGELOG.md](CHANGELOG.md).
+
+| Area | New in 1.2.0 |
+|---|---|
+| **Production** *(new group)* | **Go-live** — the production review as a checklist, answered from the model; names and passwords are never read · **Performance** — work inside loops (also hidden in a sub-microflow), deep page nesting, per-row fetches · **Integrations** — what every outbound call does when the other side fails · **Translations** — what users will not read in their own language · **Security** moves here |
+| **Review** | **Naming** — do the prefixes tell the truth about what each microflow does? |
+| **Evolve** | **Mendix 11 target** — what the move from 10 to 11 breaks or deprecates |
+| **Everywhere** | The whole interface in **Dutch** · tab rows that switch to icons instead of hiding tabs · **Go to** (Ctrl+K) in the title bar · **21 MCP tools** |
+| **Changed** | The app is scanned again once after updating. The first pipeline run on 1.2 reports the six new rule groups as new: accept them with a baseline, or use `--fail-on new-warnings` |
+
+The screenshots use **Contoso Logistics**, an invented demo app. Every name in them is made up.
+
+| | |
+|---|---|
+| ![Go-live](screenshots/22-go-live.png) | ![Performance](screenshots/23-performance.png) |
+| **Go-live** — readiness, by area, every check with its evidence | **Performance** — what runs inside loops, and pages by nesting depth |
+| ![Integrations](screenshots/24-integrations.png) | ![Translations](screenshots/25-translations.png) |
+| **Integrations** — how failures are handled, by external system | **Translations** — coverage per language and kind of document |
+| ![Naming](screenshots/26-naming.png) | ![Mendix 11 target](screenshots/27-mendix-11-target.png) |
+| **Naming** — prefixes against what each microflow does | **Mendix 11 target** — what the upgrade from 10 touches |
+
+More: [Go-live in Dutch](screenshots/28-dutch.png)
 
 ---
 
@@ -121,7 +154,7 @@ More: [Explorer](screenshots/04-explorer.png) ·
 ### Judge it
 
 - **Recommendations** — what to split, simplify, move or replace, on a refactor quadrant
-- **Security analyser** — roles as first-class nodes, five rules, role inventory
+- **Naming** *(1.2)* — prefixes and suffixes checked against what each element actually does
 - **Reachability** — six kinds of entry point, transitive dead-region detection
 - **Unused** — removal candidates with a confidence rating and the reasoning behind it
 - **Layering rules** — a checked-in rule file, baseline generation, violations that carry
@@ -133,10 +166,21 @@ More: [Explorer](screenshots/04-explorer.png) ·
   external systems can reach them
 - **Policies** *(1.1)* — *must* and *must not* rules on individual elements, checked live
 
+### Get it ready for production *(new in 1.2)*
+
+- **Go-live checklist** — the production review as passed, warning or blocker: security level, demo
+  users, the administrator's default name, password rules, strict mode, services without
+  authentication, constants sent to the browser; names and passwords are never read
+- **Security analyser** — roles as first-class nodes, role inventory, sensitive data *(1.1)*
+- **Performance** — commits, retrieves, deletes and service calls inside loops, also hidden in a
+  sub-microflow; deep page nesting and per-row fetches; inheritance depth and calculated attributes
+- **Integrations** — what every outbound call does when the other side fails, by external system
+- **Translations** — per language, what users will not read in their own language
+
 ### Plan the next step *(new in 1.1)*
 
 - **Upgrade** — what stands between the app and Mendix 12 (the React client), page by page,
-  with rough hours, and Java library conflicts
+  with rough hours, and Java library conflicts; from 1.2 also the Mendix 11 target, for apps on 10
 - **Hotspots** — what changes most and what changes together, from the app's Git history
 - **Debt** — every finding priced in minutes, summed into days, and ranked by how often its
   document changes
@@ -157,7 +201,7 @@ More: [Explorer](screenshots/04-explorer.png) ·
 - **Compare** — what a branch changed architecturally, against a saved scan
 - **Ask** — questions in plain language, answered from the measured facts, against a local
   model (Ollama) or any OpenAI-compatible endpoint
-- **Dutch** — system menus, buttons and context menus
+- **Dutch** — the whole interface *(1.2)*; element names and findings stay as they are
 
 ---
 
@@ -247,9 +291,10 @@ Full guides live in [docs/](docs/README.md).
 |---|---|
 | [Getting started](docs/getting-started.md) | Install, first scan, reading the overview |
 | [Explore](docs/explore.md) | Explorer, Graph, Network, Domain, Paths, Impact, Cycles, Inventory |
-| [Review](docs/review.md) | Recommendations, Security, Rules, Unused, Reach |
+| [Review](docs/review.md) | Recommendations, Rules, Naming, Unused, Reach, Tests, Duplicates |
+| [Production](docs/production.md) | Go-live, Security, Performance, Integrations, Translations *(1.2)* |
 | [Reports and CI](docs/reports-and-ci.md) | Explain this app, dossier, SARIF, Compare |
-| [Evolve](docs/evolve.md) | Upgrade to Mendix 12, Hotspots, Debt *(1.1)* |
+| [Evolve](docs/evolve.md) | Upgrade to Mendix 12 and 11, Hotspots, Debt |
 | [Agents and the command line](docs/agents-and-cli.md) | MCP server for AI agents, CLI and pull-request gate *(1.1)* |
 | [Ask](docs/ask.md) | Questions in plain language, local or cloud |
 | [What it cannot see](docs/limits.md) | The honest limits, and why each exists |
