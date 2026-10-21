@@ -6,7 +6,9 @@ Mendix Architect is a Studio Pro extension for developers, technical leads and s
 
 Version **1.2.0**. Works with Studio Pro **10.24.10 and later, including 11.x**, from a single build. Version 1.2 was verified live on 10.24.10 and 11.14.0.
 
-Screenshots, a video and the full guides are on GitHub: https://github.com/MohamedElNady/Mendix-Architect-Extension
+Watch what is new in 1.2 (2 min 47 s): https://youtu.be/CBsv5-0Jl5Y
+
+Screenshots and the full guides are on GitHub: https://github.com/MohamedElNady/Mendix-Architect-Extension
 
 ## Typical usage scenarios
 

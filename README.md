@@ -39,10 +39,10 @@ and its server for AI agents.
 
 ## What's new in 1.2.0
 
-[![Mendix Architect 1.2 — what's new (video, 2:47)](video/mendix-architect-1.2-cover.png)](video/mendix-architect-1.2-whats-new.mp4)
+[![Mendix Architect 1.2 — what's new (video, 2:47)](video/mendix-architect-1.2-cover.png)](https://youtu.be/CBsv5-0Jl5Y)
 
-▶ **[Watch the 1.2 video](video/mendix-architect-1.2-whats-new.mp4)** (2 min 47 s, with voice-over): a short tour of
-what Mendix Architect already does, the 1.2 features, and what comes in 1.3.
+▶ **[Watch the 1.2 video on YouTube](https://youtu.be/CBsv5-0Jl5Y)** (2 min 47 s, with voice-over; [download](video/mendix-architect-1.2-whats-new.mp4)):
+a short tour of what Mendix Architect already does, the 1.2 features, and what comes in 1.3.
 
 **Ready for production.** A new **Production** group, built from Mendix's own best practices, and the whole
 interface in Dutch. Full notes: [CHANGELOG.md](CHANGELOG.md).
