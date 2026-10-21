@@ -74,6 +74,14 @@ The pane has 33 views in six groups.
 - Diagnostics: scan coverage and what the scanner saw
 - English and Dutch: the whole interface (1.2)
 
+## Dependencies
+
+- Mendix Studio Pro 10.24.10 or later, including 11.x. One build serves both.
+- Nothing else to install. The extension, its command-line tool and its MCP server ship inside the module and run on the Node that comes with Studio Pro.
+- Optional: Git history in the app folder, for Hotspots.
+- Optional: a local Ollama model or any OpenAI-compatible endpoint, for Ask.
+- Optional, for pipelines: Mendix's `mx` tool, which every Studio Pro installation includes.
+
 ## Installation
 
 1. Open your app in Studio Pro (10.24.10 or later) and sign in.
@@ -124,12 +132,18 @@ Optional:
 
 ## Release notes: 1.2.0
 
-- A new Production group, built from Mendix's own best practices: Go-live checklist, Performance, Integrations and Translations; Security moves here.
+Ready for production.
+
+- New Production group: Go-live checklist, Performance, Integrations and Translations. Security moves here.
+- Go-live checklist: the production review as passed, warning or blocker. Security level, demo users, the default administrator name, password rules, strict mode, services without authentication, constants sent to the browser. Names and passwords are never read.
+- Performance: commits, retrieves, deletes and service calls inside loops, also when hidden in a sub-microflow; deeply nested pages and per-row fetches.
+- Integrations: what every outbound call does when the other side fails, grouped by external system.
+- Translations: per language, the texts users will not read in their own language.
 - Naming: prefixes checked against what each microflow actually does.
-- Upgrade: a Mendix 11 target for apps still on Mendix 10.
-- The whole interface in Dutch; tab rows switch to icons instead of hiding tabs; Go to (Ctrl+K) in the title bar.
-- The MCP server has 21 tools.
-- Changed: apps are scanned again once after updating. SARIF gains six rule groups, so the first pipeline run on 1.2 reports those as new: accept them with a baseline, or run the gate with `--fail-on new-warnings`.
+- Mendix 11 target: what the move from Mendix 10 to 11 breaks or deprecates.
+- The whole interface in Dutch. Tab rows switch to icons instead of hiding tabs; Go to (Ctrl+K) has a button in the title bar.
+- 21 MCP tools for Maia, Claude Code, Cursor and VS Code.
+- Note: your app is scanned again once after updating. In pipelines, the first run on 1.2 reports six new rule groups as new findings: accept them with a baseline, or use --fail-on new-warnings.
 
 ## Release notes: 1.1.0
 
@@ -139,6 +153,26 @@ Optional:
 - Charts in every new view, checked for colour-vision deficiency, in light and dark, and in Dutch.
 - Changed: apps are scanned again once after updating. SARIF gains new rule groups and a fix time per result, so the first pipeline run on 1.1 reports those as new: accept them with a baseline, or run the gate with `--fail-on new-warnings`.
 - Fixed: a page or snippet parameter named like a module no longer resolves to that module; project-level findings are no longer sent to the Errors pane.
+
+## Frequently asked questions
+
+**Does it change my app?**
+No. The pane, the command-line tool and the MCP server only read the model.
+
+**Does my model leave my machine?**
+No. The scan runs locally and is cached under your user profile. Ask is the only feature that contacts another machine, only after you configure it, and it sends measured facts, never document contents.
+
+**How long does a scan take?**
+A 52 MB app takes 15 to 20 seconds the first time. After that the cached result opens instantly, also after restarting Studio Pro.
+
+**Does it work with Mendix 11?**
+Yes. The same module works in Studio Pro 10.24.10 and later, including 11.x.
+
+**Why does a finding say "candidate"?**
+Because the model cannot prove everything. Reflection, runtime configuration and Java code can use a document the scanner cannot see, so Unused lists candidates with a confidence rating and the reason, never "dead code".
+
+**Can I use it in a pipeline?**
+Yes. The command-line tool reads the model with Mendix's own `mx` tool, needs no Studio Pro, exports SARIF and can fail a pull request only on new findings. System → CI has ready-made snippets for GitHub Actions and Azure DevOps.
 
 ## Support
 
