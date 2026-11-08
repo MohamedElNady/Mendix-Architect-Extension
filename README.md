@@ -9,11 +9,11 @@ model once and answers the questions that otherwise cost an afternoon of clickin
 depends on this, what breaks if I change it, what can I safely remove, and how did this app
 end up shaped like this.
 
-Verified live on Studio Pro **10.24.10**, **11.12.0** and **11.14.0** from a single build (1.2: on 10.24.10 and 11.14.0), against a
+Verified live on Studio Pro **10.24.10**, **11.12.0** and **11.14.0** from a single build (1.2 and 1.3: on 10.24.10 and 11.14.0), against a
 52 MB app (2,887 documents / 14,318 references) and a 62-module app (9,258 documents / 58,388
 references).
 
-**Version 1.2.0.** What changed: [CHANGELOG.md](CHANGELOG.md).
+**Version 1.3.0.** What changed: [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
@@ -32,8 +32,53 @@ Mendix Architect is installed from the Mendix Marketplace, like any other module
 
 To update, download the new version the same way and choose **Replace existing module**.
 
-The extension is read-only. It never writes to your model, and neither do its command-line tool
-and its server for AI agents.
+The extension reads your app. It changes something only when you ask for it: deleting, excluding or
+including documents, renaming, writing documentation or tidying a domain model. Each change is listed
+first, needs your confirmation, happens in one Studio Pro step and is never committed for you. The
+command-line tool never changes anything.
+
+---
+
+## What's new in 1.3.0
+
+[![Mendix Architect 1.3 — what's new (video, 3:38)](video/mendix-architect-1.3-cover.png)](https://youtu.be/qnJHF9jg8OM)
+
+▶ **[Watch the 1.3 video on YouTube](https://youtu.be/qnJHF9jg8OM)** (3 min 38 s, with voice-over; [download](video/mendix-architect-1.3-whats-new.mp4)):
+what Mendix Architect already does, the 1.3 features, and what comes next.
+
+**Clean up, document, decide.** The first release that can change your app, and only when you confirm: every
+change is listed first, happens in one Studio Pro step and is never committed for you. Full notes:
+[CHANGELOG.md](CHANGELOG.md).
+
+| Area | New in 1.3.0 |
+|---|---|
+| **Clean up** | Delete or exclude unused documents in waves, with a check for references left dangling · *Include again* · a team keep list · Java and JavaScript read, so code that names a document protects it |
+| **Security** | **Access matrix**: who may create, read, write and delete each entity · which roles may open each page and run each flow · new rules SEC006 and SEC007 |
+| **Explore** | **Page flow**: from the menu to every page, in clicks · **entity lifecycle** · **deprecation register** · **tidy layout** for a domain model · modules that act as one |
+| **Change and review** | **Compare with any commit**, read from Git · **review of the change** for pull requests · module health grades A to F |
+| **Naming** | Rename plan, and **Apply renames**: Studio Pro updates every reference, XPath included, with undo |
+| **Documentation** | Coverage, **drafts** written from the model, a **documentation set** per module as HTML or Markdown |
+| **Studio Pro** | Right-click questions, any view as an editor tab, Find Results, pickers, a badge for new findings |
+| **Also** | Work items for Azure DevOps or Jira · results from mxlint, mxcli lint and CLEVR Lint · labels and favourites · 37 MCP tools · an Apple-like look |
+
+The screenshots use **Contoso Logistics**, an invented demo app. Every name in them is made up.
+
+| | |
+|---|---|
+| ![Cleanup](screenshots/29-cleanup.png) | ![Delete confirmation](screenshots/30-delete-confirmation.png) |
+| **Cleanup** — waves, and why the rest stays | **Confirmation** — the full list, before anything changes |
+| ![Access matrix](screenshots/31-access-matrix.png) | ![Pages and flows](screenshots/32-pages-and-flows-access.png) |
+| **Access matrix** — who may change each entity | **Pages and flows** — which roles may open and run what |
+| ![Page flow](screenshots/33-page-flow.png) | ![Review of the change](screenshots/34-review-of-the-change.png) |
+| **Page flow** — from the menu to every page | **Review of the change** — for a pull request |
+| ![Apply renames](screenshots/36-apply-renames.png) | ![Entity lifecycle](screenshots/37-entity-lifecycle.png) |
+| **Apply renames** — safe ones ticked, Studio Pro updates references | **Entity lifecycle** — created, changed, deleted, and what deserves a look |
+| ![Documentation set](screenshots/40-documentation-set.png) | ![Tidy layout](screenshots/38-domain-tidy.png) |
+| **Documentation set** — a page per module | **Tidy layout** — a domain model, before and after |
+
+More: [Module health](screenshots/35-module-health.png) ·
+[Documentation coverage](screenshots/39-documentation.png) ·
+[Documentation drafts](screenshots/41-documentation-drafts.png)
 
 ---
 
@@ -139,6 +184,9 @@ More: [Explorer](screenshots/04-explorer.png) ·
   through
 - **Dependency graph** — layered subgraph with lazy expansion and clustering
 - **Open in Studio Pro** — jump from any result to the real document
+- **Right-click questions** *(1.3)* — in Studio Pro: how is this reached, what breaks if I delete it,
+  who may use it; any view as an editor tab; usages in Studio Pro's own Find Results
+- **Follow the editor** *(1.3)* — the Explorer selects whatever you open in Studio Pro
 
 ### See the shape of the app
 
@@ -146,6 +194,10 @@ More: [Explorer](screenshots/04-explorer.png) ·
 - **Module network** — force-directed or layered, cycle collapse, dependency-structure matrix
 - **Treemap** — the whole app in one picture, sized by weight and coloured by severity
 - **Domain model** — entities, associations, and who reads or writes each
+- **Entity lifecycle** *(1.3)* — where each entity is created, changed, committed and deleted
+- **Page flow** *(1.3)* — from the menu to every page, in clicks, and what each page triggers
+- **Deprecation register** *(1.3)* — `@deprecated` in the Documentation, and every use left
+- **Tidy layout** *(1.3)* — rearranges a module's domain model, previewed, with undo
 - **Coupling and instability metrics** — Martin's I, with tiers derived from your app
 - **Workflows** *(1.1)* — each workflow as a process diagram, and what can stall it
 - **C4 model** *(1.1)* — context, containers and modules, exported as Structurizr DSL,
@@ -154,9 +206,11 @@ More: [Explorer](screenshots/04-explorer.png) ·
 ### Judge it
 
 - **Recommendations** — what to split, simplify, move or replace, on a refactor quadrant
-- **Naming** *(1.2)* — prefixes and suffixes checked against what each element actually does
+- **Naming** *(1.2)* — prefixes and suffixes checked against what each element actually does; from 1.3 a
+  rename plan, and **Apply renames** with undo
 - **Reachability** — six kinds of entry point, transitive dead-region detection
-- **Unused** — removal candidates with a confidence rating and the reasoning behind it
+- **Unused** — removal candidates with a confidence rating and the reasoning behind it; from 1.3
+  **cleanup**: delete or exclude in waves, include again, a team keep list
 - **Layering rules** — a checked-in rule file, baseline generation, violations that carry
   their evidence
 - **Safe delete** — what breaks, and what is freed, if an element were removed
@@ -171,7 +225,8 @@ More: [Explorer](screenshots/04-explorer.png) ·
 - **Go-live checklist** — the production review as passed, warning or blocker: security level, demo
   users, the administrator's default name, password rules, strict mode, services without
   authentication, constants sent to the browser; names and passwords are never read
-- **Security analyser** — roles as first-class nodes, role inventory, sensitive data *(1.1)*
+- **Security analyser** — roles as first-class nodes, role inventory, sensitive data *(1.1)*; from 1.3 the
+  **access matrix** (entities, pages and flows per role)
 - **Performance** — commits, retrieves, deletes and service calls inside loops, also hidden in a
   sub-microflow; deep page nesting and per-row fetches; inheritance depth and calculated attributes
 - **Integrations** — what every outbound call does when the other side fails, by external system
@@ -183,14 +238,16 @@ More: [Explorer](screenshots/04-explorer.png) ·
   with rough hours, and Java library conflicts; from 1.2 also the Mendix 11 target, for apps on 10
 - **Hotspots** — what changes most and what changes together, from the app's Git history
 - **Debt** — every finding priced in minutes, summed into days, and ranked by how often its
-  document changes
+  document changes; from 1.3 **module health** grades and work items for Azure DevOps or Jira
+- **Documentation** *(1.3)* — coverage, drafts written from the model, and a documentation set
 
 ### Outside Studio Pro *(new in 1.1)*
 
 - **Command line and pull-request gate** — the same analysis without Studio Pro, reading the model
   with Mendix's own `mx` tool; the gate fails only on findings that are new since the base branch
 - **MCP server for AI agents** — Maia, Claude Code, Cursor, VS Code and other agents can ask the
-  questions the pane answers; off until you start it, local only, token-protected
+  questions the pane answers; off until you start it, local only, token-protected; 37 tools from 1.3,
+  four of which change the app only after a confirmation code and Studio Pro's own dialog
 
 ### Work with it
 
@@ -198,7 +255,8 @@ More: [Explorer](screenshots/04-explorer.png) ·
 - **Guided review** — the architecture review as an agenda, each question carrying its answer
 - **Architecture dossier** — every tab's answer in one Markdown document
 - **SARIF export** — findings in GitHub Code Scanning, Azure DevOps, SonarQube or VS Code
-- **Compare** — what a branch changed architecturally, against a saved scan
+- **Compare** — what a branch changed architecturally, against a saved scan or *(1.3)* any commit,
+  with a review of the change for pull requests
 - **Ask** — questions in plain language, answered from the measured facts, against a local
   model (Ollama) or any OpenAI-compatible endpoint
 - **Dutch** — the whole interface *(1.2)*; element names and findings stay as they are
@@ -265,6 +323,10 @@ never document contents. Point it at Ollama and nothing leaves the machine at al
 a cloud endpoint, the API key is stored under your local application data, outside the app
 folder, and is never sent back to the pane once saved.
 
+**Changes to your app** happen only when you confirm them, in one Studio Pro step, and are never
+committed: review them in Studio Pro's Changes pane. Before a delete, the list is saved to
+`%LOCALAPPDATA%\MendixArchitect` so you know what went.
+
 The **MCP server** for AI agents is off until you start it. It listens on `127.0.0.1` only, refuses
 requests from web pages and needs a token. Version history is read locally, and authors are shown
 as opaque hashes, never names or e-mail addresses. Outbound calls are recorded by location only;
@@ -292,9 +354,12 @@ Full guides live in [docs/](docs/README.md).
 | [Getting started](docs/getting-started.md) | Install, first scan, reading the overview |
 | [Explore](docs/explore.md) | Explorer, Graph, Network, Domain, Paths, Impact, Cycles, Inventory |
 | [Review](docs/review.md) | Recommendations, Rules, Naming, Unused, Reach, Tests, Duplicates |
+| [Cleanup](docs/cleanup.md) | Delete, exclude and include documents, waves, the keep list *(1.3)* |
 | [Production](docs/production.md) | Go-live, Security, Performance, Integrations, Translations *(1.2)* |
 | [Reports and CI](docs/reports-and-ci.md) | Explain this app, dossier, SARIF, Compare |
-| [Evolve](docs/evolve.md) | Upgrade to Mendix 12 and 11, Hotspots, Debt |
+| [Evolve](docs/evolve.md) | Upgrade to Mendix 12 and 11, Hotspots, Debt, module health |
+| [Documentation](docs/documentation.md) | Coverage, drafts, documentation set, deprecation register *(1.3)* |
+| [Studio Pro integration](docs/studio-pro.md) | Right-click questions, editor tabs, Find Results, badge *(1.3)* |
 | [Agents and the command line](docs/agents-and-cli.md) | MCP server for AI agents, CLI and pull-request gate *(1.1)* |
 | [Ask](docs/ask.md) | Questions in plain language, local or cloud |
 | [What it cannot see](docs/limits.md) | The honest limits, and why each exists |

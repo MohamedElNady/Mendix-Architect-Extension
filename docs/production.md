@@ -25,6 +25,18 @@ Roles as first-class nodes, the role inventory, and **Sensitive data**: personal
 attributes, and whether anonymous users or external systems can reach them. Moved here from Review in
 1.2; see [Review](review.md) for how the rules are defined.
 
+**Access** *(1.3)* answers an auditor's first question in one table: which role may **create, read,
+write and delete** each entity. By user role (what its module roles add up to) or by module role, per
+module; darker the more it allows, lower case when only some members, `*` when an XPath constraint
+narrows the rows. A chart shows what each role may change, a warning appears when the anonymous role
+may change stored data, and *Access CSV* exports it. Entities that are never stored are listed apart,
+so a form helper is not mistaken for data.
+
+**Pages and flows** shows which user roles may open each page and run each microflow and nanoflow,
+with a chart per role and *Only with findings*. Flows only server code calls are marked *server only*.
+Right-click a page or microflow in Studio Pro and choose *Who can open this page?* or *Who can run
+this microflow?* to open it on that one row.
+
 ## Performance
 
 Work that costs a round trip every time it runs, found in the model before anyone measures it.

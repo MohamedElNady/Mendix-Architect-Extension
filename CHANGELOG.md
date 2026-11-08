@@ -1,5 +1,76 @@
 # Changelog
 
+## 1.3.0 — 2026-11-26
+
+**Clean up, document, decide.** The biggest release so far, and the first that can change your app:
+delete, exclude or include documents, rename, write documentation and tidy a domain model. Every
+change is listed first, needs your confirmation, happens in one Studio Pro step and is never
+committed for you. Two new views (Page flow, Documentation), new sections in six more, and 37 MCP
+tools. Verified live on Studio Pro 10.24.10 and 11.14.0 from one build.
+
+**Clean up, safely** (Review → Unused) — tick documents or a whole wave and delete them. Wave 1 is
+what nothing references; wave 2 what only wave 1 references. Before anything goes, the view lists
+every reference the selection would leave dangling and offers to add the documents that use them. The
+app's Java and JavaScript are read too: a document named in code is never offered for deleting.
+*Exclude* is the reversible alternative and reaches further (Java actions, documents named in code,
+unit tests, each with a warning); **Excluded from the app** lists what is excluded today, with
+*Include again*. A team **keep list** in the rule file, with a reason per entry. Deleting can be
+undone with Version Control → Revert changes until you commit.
+
+**Fewer false "unused"** — published OData services, business event services and unit tests run by
+the UnitTesting module are ways into the app; scheduled events switched off locally still count
+(the cloud decides); task queues are low confidence.
+
+**Security** (Production → Security → Access) — who may create, read, write and delete each
+entity, per user or module role, with a CSV for auditors; stored entities apart from in-memory ones.
+**Pages and flows**: which roles may open each page and run each microflow or nanoflow. New rules
+**SEC006** (a microflow keeps allowed roles although nothing in the browser calls it, so a user can
+run it directly) and **SEC007** (allowed only for roles no user has). **Corrected:** SEC002 and
+SEC003 described Mendix security backwards; a page or flow without allowed roles is open to no one,
+not to everyone. Both are now low and say what happens: an access error.
+
+**Explore** — *Page flow* (new): from the menu to every page, in clicks, through buttons, snippets
+and the microflows that open pages, and what each page triggers. *Domain*: the **entity lifecycle**
+(where each entity is created, changed, committed, deleted and retrieved, and tables that only grow),
+a **deprecation register** (`@deprecated` in an element's Documentation; every remaining use becomes
+finding DEP001), and **Tidy layout** for a module's domain model, previewed, with undo. *Network*:
+modules that act as one, as merge suggestions.
+
+**Change and review** (System → Compare) — **compare with any commit**: the commit's model is read
+from Git history without touching your working copy. **Review of the change**: a summary for a pull
+request, the new findings first (security on top), the documents with the widest reach, exported as
+Markdown. The CLI does the same with `--base-commit` and `check --review`.
+
+**Naming** — the **rename plan** lists every suggested rename, riskiest first; **Apply renames**
+renames the low- and medium-risk ones in Studio Pro, which updates every reference, XPath included.
+Undo renames the batch back.
+
+**Evolve** — *Documentation* (new): coverage per kind and module and what to document first;
+**drafts** written from what the model shows, never a guess, edited and then written into empty
+Documentation fields; a **documentation set**, a page per module as HTML or Markdown. *Debt*:
+**module health**, a grade from A to F with every deduction listed, and **work items** as a CSV for
+Azure DevOps or Jira.
+
+**More of Studio Pro** — right-click a document or entity: *How is this reached?*, *What breaks if
+I delete this?*, *Page flow from here*, *Who can create, read, write and delete it?*, *Who can open
+this page?*. Any view opens as an editor tab. Usages in Studio Pro's own Find Results, documents
+from Studio Pro's own pickers, a badge for new findings, a notification when a long scan finishes,
+and an Explorer that can follow the editor you have open.
+
+**Also** — results from mxlint, mxcli lint and CLEVR Lint beside these findings (System → CI);
+team labels and personal favourites in the Explorer; two microflow checks, MF008 (a boolean compared
+with true or false) and MF009 (more than six parameters); the document types Studio Pro 11.x adds
+(up to 11.15) are recognised. A calmer, Apple-like look, checked on every view down to 300 px.
+
+**Agents** — 37 MCP tools. Four of them change the app (delete or exclude, include again, apply
+renames, write documentation), each in two calls with a confirmation code, and Studio Pro shows its
+own question dialog before anything happens.
+
+**Changed** — the first time an app is opened after updating, it is scanned again. SARIF gains the
+`deprecation` rule group and new rules (SEC006, SEC007, MF008, MF009, DEP001), so the first pipeline
+run on 1.3 reports those as new: accept them with a baseline, or run the gate with
+`--fail-on new-warnings`. The rule file accepts `keep` and `labels`.
+
 ## 1.2.0 — 2026-10-19
 
 **Ready for production.** Five new views, a new **Production** group and the whole interface in Dutch.

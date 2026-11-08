@@ -15,9 +15,15 @@ Mendix 12.
   Cursor, VS Code and most other agents support.
 - It is **off until you start it**, listens on `127.0.0.1` only (port 7791 by default), refuses
   requests from web pages, and requires a token. It stops when Studio Pro closes.
-- All 21 tools are **read-only** (15 since 1.1; 1.2 added performance, integrations, naming,
-  translations, the go-live checklist and the Mendix 11 target). They answer from the last scan;
-  rescan in the pane to update what agents see.
+- **37 tools** (15 since 1.1, 21 since 1.2). They answer from the last scan; rescan in the pane to
+  update what agents see. 1.3 added the access matrix, page flow, module health, the rename plan,
+  compare with a commit, the review of a change, entity lifecycle, documentation coverage and drafts,
+  the documentation set, deprecations and the cleanup plan.
+- **Four tools change the app**: `delete_unused_documents` (delete or exclude), `include_excluded_documents`,
+  `apply_renames` and `write_documentation`. Each takes **two calls**: the first changes nothing and returns
+  the exact list with a confirmation code the agent must show you; the second, with the code, asks the
+  extension in Studio Pro, and **Studio Pro shows its own question dialog**. Nothing changes unless you
+  confirm there. They work only through the server the pane starts.
 
 The Agents tab shows a ready-made snippet for each client. The token is filled in only after you
 tick *Show token*.
@@ -41,7 +47,13 @@ node mendix-architect.mjs check  --mpr App.mpr --base-mpr base/App.mpr --sarif o
 node mendix-architect.mjs diff   --base a.json --head b.json --out diff.md
 node mendix-architect.mjs report --mpr App.mpr --out dossier.md
 node mendix-architect.mjs c4     --mpr App.mpr --format structurizr --out workspace.dsl
+node mendix-architect.mjs check  --mpr App.mpr --base-commit main --review review.md   # 1.3
+node mendix-architect.mjs workitems --mpr App.mpr --out workitems.csv                  # 1.3
+node mendix-architect.mjs docs   --mpr App.mpr --out-dir docs --format md              # 1.3
 ```
+
+`commits` lists the commits that changed the model, and `scan-commit` scans one. The command line
+never changes the app.
 
 `check` compares the pull request with its base branch and **fails only on findings that are new**,
 so an existing app can adopt it without fixing everything first. Findings you accept can be

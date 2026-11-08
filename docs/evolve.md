@@ -46,3 +46,14 @@ often they change, because debt in a document that changes every week is paid ag
 The default prices are rough averages. Set your own per rule in the rule file, and the pane,
 the SARIF export, the dossier and the pull-request gate all use them. One refactor that resolves
 several findings is priced once.
+
+### Module health *(1.3)*
+
+A grade per module, **A to F**, from debt per document against the app's median, open security
+findings, coupling, module cycles and complex flows no test reaches, with every deduction listed. A
+bar of modules per grade, and a quadrant of size against debt per document: the modules both big and
+expensive are the ones to plan for.
+
+## Documentation *(1.3)*
+
+How much of the app is documented, and what to document first. See [Documentation](documentation.md).

@@ -24,8 +24,12 @@ to Mendix's own Best Practice Recommender rather than duplicated here.
 Roles are promoted to first-class nodes, which is what turns "which role can do what" from
 unanswerable into an ordinary graph question.
 
-Five rules, covering entities with no access rules, client-callable microflows with no role
-restriction, and pages with a direct URL and no restriction.
+Seven rules: entities with no access rule (SEC001); pages and flows the browser uses but no role
+may open or run, which gives users an access error (SEC002, SEC003); module roles nothing uses and
+user roles that grant nothing (SEC004, SEC005); a microflow that keeps allowed roles although nothing
+in the browser calls it, so a user of those roles can run it directly (SEC006); and pages or flows
+allowed only for roles no user has (SEC007). The **access matrix** *(1.3)* shows the same per role:
+see [Production](production.md).
 
 **XPath constraints on access rules are not evaluated.** A constraint can only narrow access,
 never widen it — so anything reported as unrestricted really is, while anything reported as
@@ -74,6 +78,9 @@ which the older "no inbound reference" test could never find.
 Before deleting anything, open it and run **What breaks if I delete this?**. It re-runs
 reachability on the app without that element and shows what would dangle and what becomes
 removable along with it.
+
+From 1.3 the view can also **clean up**: delete or exclude what you tick, in waves, and include
+again what is excluded today. See [Cleanup](cleanup.md).
 
 ## Reach
 
@@ -132,6 +139,17 @@ page and nanoflow calls):
 
 "Do the prefixes tell the truth?" shows it as one chart. Your own convention goes in the rule file,
 under `naming`.
+
+### Rename plan and Apply renames *(1.3)*
+
+The **rename plan** turns every suggestion into a step, old name → new name, riskiest first: blocked
+when the new name is taken, high when code names it or other apps may use it, medium with many
+references. Export it as CSV or as a Markdown checklist.
+
+**Apply renames…** renames the low- and medium-risk steps you tick in Studio Pro, in one step.
+Studio Pro updates every reference itself, including the text of XPath constraints. High-risk and
+blocked steps are not offered, and Marketplace modules are refused. Every batch is recorded first, and
+**Undo** renames it back as long as nothing changed those elements since.
 
 *Security and Sensitive data moved to the Production group in 1.2:* see [Production](production.md).
 

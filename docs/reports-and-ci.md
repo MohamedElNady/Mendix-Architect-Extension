@@ -75,6 +75,21 @@ Scan on the base branch and save it, switch branch in Studio Pro, rescan, compar
 It distinguishes a rename from an add plus a delete, a brand-new module coupling from one that
 merely got heavier, and names cycles introduced and cycles resolved.
 
+### Any commit *(1.3)*
+
+**Compare with any commit** needs no saved scan: pick a commit, and its model is read from the Git
+history into a temporary folder (your working copy, index and branch are not touched) and scanned
+with the matching Studio Pro's `mx` tool, then cached. The command line does the same with
+`--base-commit <commit>`, so a pipeline can compare a pull request with `main` without storing a
+base scan.
+
+### Review of the change *(1.3)*
+
+Against a commit or a saved scan: a plain-language summary for a pull request, the findings the
+change brings (security first, new against the base like the gate), what it fixes, the changed
+documents with the widest reach, and what changed. *Review as Markdown* exports it; the command line
+writes it with `check --review review.md`.
+
 **Trend** places every saved scan by *when* it was taken rather than evenly, so a gap in the
 record looks like a gap. A snapshot exists only where someone pressed save: this is a record of
 when the tool was run, not of when the app changed, and the chart says so.
@@ -83,3 +98,15 @@ when the tool was run, not of when the app changed, and the chart says so.
 how you see a shared module drifting apart between two applications. Off by default, and the
 pane warns that document counts between two different apps are meaningless — read the module
 coupling instead.
+
+## Other linters *(1.3)*
+
+**System → CI** loads the SARIF or JUnit output of mxlint, mxcli lint and CLEVR Lint and shows it
+beside these findings, by rule and linked to the model. `check --include` merges it into the SARIF and
+the gate. They are read, not run: those tools stay separate downloads.
+
+## Work items *(1.3)*
+
+**Evolve → Debt → Work items** exports findings as a CSV for Azure DevOps or Jira: one item per rule
+and module, with the elements, the explanation, the estimate and tags. Your team imports the file;
+nothing is sent to a tracker. The command line writes the same with `workitems`.

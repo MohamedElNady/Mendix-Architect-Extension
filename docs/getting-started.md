@@ -15,7 +15,8 @@ Mendix Architect is installed from the Mendix Marketplace, like any other module
 
 To update, download the new version the same way and choose **Replace existing module**.
 
-The pane docks like any other. It is read-only and never writes to your model.
+The pane docks like any other. It reads your app, and changes something only when you ask and
+confirm: see [Cleanup](cleanup.md) and [Documentation](documentation.md).
 
 ## The first scan
 

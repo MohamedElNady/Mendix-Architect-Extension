@@ -57,6 +57,9 @@ the graph sees and not a refactoring plan: two groups can be one business concep
 what cutting it would actually achieve. Cycles before and after, and which modules come free.
 Sometimes the answer is none, and it says so.
 
+**Acts as one with** *(1.3)* — the opposite move: two modules that call each other both ways and
+take most of each other's traffic behave as one, and are worth merging.
+
 ## Domain
 
 Entities, associations, and who reads or writes each.
@@ -72,6 +75,37 @@ they leave no trace here — an entity only ever deleted will look unwritten.
 
 The read/write split is the shape of the thing: many readers and one writer is configuration;
 many writers and few readers is a log.
+
+### Lifecycle *(1.3)*
+
+Where the app's own microflows, nanoflows and pages create, change, commit, delete, roll back and
+retrieve each entity, in six cells on the entity's panel. Variables are typed through the flow
+(parameters, retrieves, loops, list operations, call results), and what cannot be typed is counted,
+never guessed. **Worth a look** lists stored entities that are created but never deleted (the table
+only grows), entities changed or deleted but created nowhere in the app, and commits that skip the
+entity's event handlers.
+
+### Deprecated *(1.3)*
+
+Put a line starting with `@deprecated` in an element's Documentation; the rest of the line is the
+reason. Documents, entities, attributes and associations can be marked, also from the entity's panel.
+The section lists every deprecated element with the uses left (at zero it can go), and each use is a
+finding (DEP001), so a new use shows in the pull-request gate.
+
+### Tidy layout *(1.3)*
+
+Choose a module, then **Tidy layout…**: the most connected entity first, associated entities in the
+rows below, unconnected ones in a grid. Only positions change. The dialog shows the layout before
+and after, with overlapping boxes and crossing lines counted; Studio Pro moves the entities in one
+step, and Edit → Undo or the dialog's undo puts them back.
+
+## Page flow *(1.3)*
+
+From the menu to every page, in clicks: buttons and links on a page or its snippets, and the
+microflows and nanoflows that show a page (up to three calls deep), starting from the navigation
+menu and pages with a URL. A layered diagram (solid: a button, dashed: through a flow), a chart of
+pages by clicks, *focus* on one page, a module filter, and the pages nothing opens. Select a page to
+see what it triggers: every microflow and nanoflow, with the widget and the event.
 
 ## Paths
 

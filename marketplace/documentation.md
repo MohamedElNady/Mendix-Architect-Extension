@@ -4,9 +4,11 @@
 
 Mendix Architect is a Studio Pro extension for developers, technical leads and solution architects. It scans the model once and answers the questions that otherwise cost an afternoon of clicking: what depends on this, what breaks if I change it, what can I safely remove, what blocks Mendix 12, and how did this app end up shaped like this.
 
-Version **1.2.0**. Works with Studio Pro **10.24.10 and later, including 11.x**, from a single build. Version 1.2 was verified live on 10.24.10 and 11.14.0.
+Version **1.3.0**. Works with Studio Pro **10.24.10 and later, including 11.x**, from a single build. Version 1.3 was verified live on 10.24.10 and 11.14.0.
 
-Watch what is new in 1.2 (2 min 47 s): https://youtu.be/CBsv5-0Jl5Y
+Watch what is new in 1.3 (3 min 38 s): https://youtu.be/qnJHF9jg8OM
+
+What was new in 1.2 (2 min 47 s): https://youtu.be/CBsv5-0Jl5Y
 
 Screenshots and the full guides are on GitHub: https://github.com/MohamedElNady/Mendix-Architect-Extension
 
@@ -14,7 +16,9 @@ Screenshots and the full guides are on GitHub: https://github.com/MohamedElNady/
 
 - **Taking over an app.** Get a written handover summary, the module structure, the cycles and the riskiest areas before opening a single microflow.
 - **Before changing something.** See everything that depends on an entity, attribute, microflow or page, and what would break if you removed it.
-- **Cleaning up.** Find removal candidates, copied-and-renamed microflows and pages, and code no test reaches.
+- **Cleaning up.** Find removal candidates, then delete or exclude them in waves, with a check that nothing you keep still uses them. Also copied-and-renamed microflows and pages, and code no test reaches.
+- **Documenting an app.** See what is undocumented, draft Documentation from the model, and export a documentation set per module.
+- **An audit.** See which role may create, read, write and delete each entity, and open each page.
 - **Planning the next release.** Size the Mendix 12 (React client) upgrade, find the hotspots in your Git history, and see your technical debt in days.
 - **Going live.** Get the production review as a checklist: security settings, published services, performance anti-patterns, integration error handling and missing translations.
 - **Reviewing a pull request.** Run the same analysis in your pipeline and fail only on findings that are new.
@@ -22,7 +26,7 @@ Screenshots and the full guides are on GitHub: https://github.com/MohamedElNady/
 
 ## Features
 
-The pane has 33 views in six groups.
+The pane has 35 views in six groups.
 
 **Explore**
 - Explorer: search every document, filter by type and module, with usage counts
@@ -34,14 +38,17 @@ The pane has 33 views in six groups.
 - Domain model: entities, associations, and who reads or writes each
 - Inventory of background load, configuration and integration surface
 - Workflows (new in 1.1): each workflow as a process diagram, and what can stall it
+- Page flow (new in 1.3): from the menu to every page, in clicks, and what each page triggers
+- Entity lifecycle (new in 1.3): where each entity is created, changed, committed and deleted
+- Deprecation register (new in 1.3) and Tidy layout for a domain model, with undo
 - C4 model (new in 1.1): context, containers and modules, exported as Structurizr DSL, C4-PlantUML or Mermaid
 
 **Review**
 - Recommendations: what to split, simplify, move or replace
-- Naming (new in 1.2): prefixes and suffixes checked against what each microflow actually does
+- Naming (new in 1.2): prefixes and suffixes checked against what each microflow actually does; from 1.3 a rename plan and Apply renames, with undo
 - Layering rules in a checked-in rule file, with baseline generation
 - Policies (new in 1.1): must and must-not rules on individual elements, checked live
-- Unused: removal candidates with a confidence rating and the reasoning behind it
+- Unused: removal candidates with a confidence rating and the reasoning behind it; from 1.3 cleanup: delete or exclude in waves, include again, a team keep list
 - Reachability across six kinds of entry point
 - Tests (new in 1.1): which microflows the unit tests reach, and the risky ones none reach
 - Duplicates (new in 1.1): copied-and-renamed microflows and pages
@@ -49,7 +56,7 @@ The pane has 33 views in six groups.
 
 **Production** (new in 1.2)
 - Go-live: the production review as a checklist of passed, warning and blocker; names and passwords are never read
-- Security: roles as first-class nodes, with a role inventory, and Sensitive data (personal and secret attributes, and who can reach them)
+- Security: roles as first-class nodes, with a role inventory, and Sensitive data (personal and secret attributes, and who can reach them); from 1.3 the access matrix for entities, pages and flows
 - Performance: commits, retrieves, deletes and service calls inside loops, also hidden in a sub-microflow; deep page nesting and per-row fetches
 - Integrations: what every outbound call does when the other side fails, by external system
 - Translations: per language, what users will not read in their own language
@@ -57,7 +64,8 @@ The pane has 33 views in six groups.
 **Evolve** (new in 1.1)
 - Upgrade: what stands between the app and Mendix 12's React client, page by page with rough hours, and Java library conflicts; from 1.2 also the Mendix 11 target for apps on 10
 - Hotspots: what changes most and what changes together, from the app's Git history
-- Debt: every finding priced in minutes, summed into days, ranked by how often its document changes
+- Debt: every finding priced in minutes, summed into days, ranked by how often its document changes; from 1.3 module health grades A to F and work items for Azure DevOps or Jira
+- Documentation (new in 1.3): coverage, drafts written from the model, and a documentation set
 
 **Report**
 - Explain this app: a written handover summary
@@ -65,11 +73,11 @@ The pane has 33 views in six groups.
 - Architecture dossier: every view's answer in one Markdown document
 - SARIF export for GitHub Code Scanning, Azure DevOps, SonarQube and VS Code
 - Findings in Studio Pro's own Errors pane
-- Compare: what a branch changed architecturally
+- Compare: what a branch changed architecturally, against a saved scan or any commit, with a review of the change for pull requests
 
 **System**
 - Ask: questions in plain language, answered from the measured facts, using a local model (Ollama) or any OpenAI-compatible endpoint
-- Agents (new in 1.1): an MCP server for AI agents
+- Agents (new in 1.1): an MCP server for AI agents, 37 tools from 1.3
 - CI (new in 1.1): a preview of the pull-request gate, and pipeline snippets
 - Diagnostics: scan coverage and what the scanner saw
 - English and Dutch: the whole interface (1.2)
@@ -99,7 +107,7 @@ The pane has 33 views in six groups.
 None is required. The first scan starts on its own: a 52 MB app takes 15 to 20 seconds, and the result is cached, so everything after it is instant, also after restarting Studio Pro. Click **Rescan** after you change the model.
 
 Optional:
-- **Rule file.** Layering rules, policies, sensitive attributes, your naming convention and your own debt prices live in `mendix-architect.rules.json` in the app folder, so they are reviewed and committed with the app. Create and edit it from **Review → Rules**.
+- **Rule file.** Layering rules, policies, sensitive attributes, your naming convention, a keep list, team labels and your own debt prices live in `mendix-architect.rules.json` in the app folder, so they are reviewed and committed with the app. Create and edit it from **Review → Rules**.
 - **Ask.** Point it at a local Ollama model, or at any OpenAI-compatible endpoint, under **System → Ask**.
 - **AI agents.** Under **System → Agents**, click **Start server**. To connect Maia (Studio Pro 11.8 and later): **View → MCP Settings → Add MCP Server**, URL `http://127.0.0.1:7791/mcp`, connection type **HTTP (Streamable)**, authentication **Bearer Token** with the token from the Agents tab, then enable the tools.
 - **Pipelines.** The command-line tool ships inside the module, at `extensions/MendixArchitect/cli/mendix-architect.mjs`. It runs on Node and reads the model with Mendix's own `mx` tool, so no Studio Pro is needed. **System → CI** has ready-made snippets for GitHub Actions and Azure DevOps.
@@ -107,7 +115,8 @@ Optional:
 ## Privacy and security
 
 - Your model never leaves your machine. The extension reads the open app and keeps the result in memory and in a local cache under your user profile. There is no telemetry.
-- The extension, its command-line tool and its MCP server are **read-only**. They never change your model.
+- The extension changes your app only when you ask and confirm: deleting, excluding or including documents, renaming, writing documentation or tidying a domain model. Each change is listed first, happens in one Studio Pro step and is never committed for you. The command-line tool never changes anything.
+- AI agents cannot change your app on their own: a change takes a confirmation code, and Studio Pro shows its own question dialog before anything happens.
 - The go-live checklist never reads names or passwords: the administrator is recorded only as "default name or not", demo users as a count, constants without values.
 - The MCP server is off until you start it. It listens on `127.0.0.1` only, refuses requests from web pages, and requires a token.
 - Ask is the only feature that contacts another machine, and only after you configure it. It sends a digest of measured facts (counts, coupling, findings), never document contents. With Ollama, nothing leaves the machine.
@@ -129,6 +138,24 @@ Optional:
 - **The extension does not appear under Extensions.** Make sure you chose *Trust module and enable extension* when importing. If you declined, re-open the app, or trust the module from the extension prompt.
 - **A number looks wrong.** Open **System → Diagnostics**. It reports scan coverage, unresolved references by property, and the metamodel types the scanner saw. That page usually explains what happened without sharing your model.
 - **The pipeline cannot find `mx`.** Pass `--mx`, set `MX_EXE`, or put `mx` on the PATH. Otherwise the tool looks for an installed Studio Pro that matches the app's version.
+
+## Release notes: 1.3.0
+
+Clean up, document, decide. The first release that can change your app, and only when you confirm.
+
+- Cleanup: delete or exclude unused documents in waves, with a check for references left dangling; include again; a team keep list. Java and JavaScript are read, so a document named in code is protected.
+- Fewer false "unused": published OData, business events, unit tests and scheduled events switched off locally count as ways in.
+- Security: an access matrix of who may create, read, write and delete each entity, and which roles may open each page and run each flow. New rules SEC006 and SEC007; SEC002 and SEC003 corrected.
+- Page flow: from the menu to every page, in clicks.
+- Entity lifecycle, a deprecation register and Tidy layout for a domain model.
+- Compare with any commit, read from Git, and a review of the change for pull requests.
+- Module health grades A to F, and work items for Azure DevOps or Jira.
+- Rename plan and Apply renames: Studio Pro updates every reference, XPath included, with undo.
+- Documentation: coverage, drafts written from the model, and a documentation set per module.
+- Studio Pro integration: right-click questions, editor tabs, Find Results, pickers, a badge for new findings.
+- Results from mxlint, mxcli lint and CLEVR Lint; labels and favourites; MF008 and MF009; an Apple-like look.
+- 37 MCP tools. Four change the app, each after a confirmation code and Studio Pro's own dialog.
+- Note: your app is scanned again once after updating. In pipelines, the first run on 1.3 reports the new rules as new findings: accept them with a baseline, or use --fail-on new-warnings.
 
 ## Release notes: 1.2.0
 
