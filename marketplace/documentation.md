@@ -184,7 +184,7 @@ Ready for production.
 ## Frequently asked questions
 
 **Does it change my app?**
-No. The pane, the command-line tool and the MCP server only read the model.
+Only when you ask and confirm. Deleting, excluding or including documents, renaming, writing documentation and tidying a domain model are each listed first, happen in one Studio Pro step and are never committed for you. Everything else only reads the model, and the command-line tool never changes anything.
 
 **Does my model leave my machine?**
 No. The scan runs locally and is cached under your user profile. Ask is the only feature that contacts another machine, only after you configure it, and it sends measured facts, never document contents.
